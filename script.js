@@ -71,40 +71,49 @@ function deleteExpense(expenseItem) {
 }
 
 function saveExpenseToLocalStorage(description, amount) {
+
+  
   const expenses = getExpensesFromLocalStorage();
   expenses.push({ description, amount });
-  saveExpensesToLocalStorage(expenses);
+  // saveExpensesToLocalStorage(expenses);
+  axios.post("https://crudcrud.com/api/e2f0eb45bc0f427883faf2ff7abf34d4/appmdata",expenses)
+  .then((response) => {
+    console.log(err)
+  })
+  .catch((err)=> {
+    console.log(err)
+  })
 }
 
-function getExpensesFromLocalStorage() {
-  const expenses = JSON.parse(localStorage.getItem("expenses")) || [];
-  return expenses;
-}
+// function getExpensesFromLocalStorage() {
+//   const expenses = JSON.parse(localStorage.getItem("expenses")) || [];
+//   return expenses;
+// }
 
-function saveExpensesToLocalStorage(expenses) {
-  localStorage.setItem("expenses", JSON.stringify(expenses));
-}
+// function saveExpensesToLocalStorage(expenses) {
+//   localStorage.setItem("expenses", JSON.stringify(expenses));
+// }
 
-function loadExpenses() {
-  const expenses = getExpensesFromLocalStorage();
-  expenses.forEach((expense) => {
-    const expenseItem = document.createElement("div");
-    expenseItem.classList.add("expense-item");
+// function loadExpenses() {
+//   const expenses = getExpensesFromLocalStorage();
+//   expenses.forEach((expense) => {
+//     const expenseItem = document.createElement("div");
+//     expenseItem.classList.add("expense-item");
 
-    const editButton = document.createElement("span");
-    editButton.innerText = "Edit";
-    editButton.classList.add("edit-btn");
-    editButton.addEventListener("click", () => editExpense(expenseItem));
+//     const editButton = document.createElement("span");
+//     editButton.innerText = "Edit";
+//     editButton.classList.add("edit-btn");
+//     editButton.addEventListener("click", () => editExpense(expenseItem));
 
-    const deleteButton = document.createElement("span");
-    deleteButton.innerText = "Delete";
-    deleteButton.classList.add("delete-btn");
-    deleteButton.addEventListener("click", () => deleteExpense(expenseItem));
+//     const deleteButton = document.createElement("span");
+//     deleteButton.innerText = "Delete";
+//     deleteButton.classList.add("delete-btn");
+//     deleteButton.addEventListener("click", () => deleteExpense(expenseItem));
 
-    expenseItem.innerHTML = `<span>${expense.description}</span><span>${expense.amount}</span>`;
-    expenseItem.appendChild(editButton);
-    expenseItem.appendChild(deleteButton);
+//     expenseItem.innerHTML = `<span>${expense.description}</span><span>${expense.amount}</span>`;
+//     expenseItem.appendChild(editButton);
+//     expenseItem.appendChild(deleteButton);
 
-    expenseList.appendChild(expenseItem);
-  });
-}
+//     expenseList.appendChild(expenseItem);
+//   });
+// }
