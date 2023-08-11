@@ -58,6 +58,20 @@ function editExpense(expenseItem) {
   expenses[index] = { description, amount };
   saveExpensesToLocalStorage(expenses);
 }
+function editUserDetails(emailId,PhoneNumber, username,userID){
+  document.getElementById('email').value=emailId;
+  document.getElementById('username').value=username;
+  document.getElementById('phonenumber').value=PhoneNumber;
+  deleteUser(userId)
+}
+function deleteUser(userId){
+  axios.delete(`https://crudcrud.com/api/e2f0eb45bc0f427883faf2ff7abf34d4/appmdata`).then((response)=>{
+    removeUserFromScreen(userId)
+  })
+  .catch((err)=>{
+    console.log(error)
+  });
+}
 
 function deleteExpense(expenseItem) {
   if (confirm("Are you sure you want to delete this expense?")) {
@@ -119,6 +133,8 @@ function loadExpenses(user){
 // function saveExpensesToLocalStorage(expenses) {
 //   localStorage.setItem("expenses", JSON.stringify(expenses));
 // }
+
+
 
 function loadExpenses() {
   const expenses = getExpensesFromLocalStorage();
