@@ -84,6 +84,9 @@ function saveExpenseToLocalStorage(description, amount) {
     console.log(err)
   })
 }
+function deletleUser(emailId)
+
+
 
 
 // Task18//
@@ -102,7 +105,11 @@ document.addEventListener("DOMContentLoaded", () => {
   })
 });
 
-
+function loadExpenses(user){
+  if(localStorage.getItem(user.email) !== null){
+    removeUserFromScreen(user.email)
+  }
+  const childHTML = `<li id=${user._id}> ${user.name} - ${user.email}<button onclick=deletUser(`${user._id}`)>`}
 
 // function getExpensesFromLocalStorage() {
 //   const expenses = JSON.parse(localStorage.getItem("expenses")) || [];
